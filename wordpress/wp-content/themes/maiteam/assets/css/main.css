@@ -1,0 +1,2250 @@
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #000;
+    color: #111;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==============================
+   MAITEAM HERO SECTION
+============================== */
+
+.mai-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 200px 8% 80px;
+    overflow: hidden;
+    background: #000;
+}
+
+.mai-hero-slideshow,
+.mai-hero-slide,
+.mai-hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.mai-hero-slideshow {
+    z-index: 0;
+}
+
+.mai-hero-slide {
+    background-position: left center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.mai-hero-slide.is-active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.mai-hero-overlay {
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0.28) 42%,
+        rgba(0, 0, 0, 0.72) 100%
+    );
+}
+
+.mai-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    text-align: right;
+}
+
+.mai-hero h1 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.08;
+    margin: 0 0 28px;
+}
+
+.mai-hero-description {
+    margin: 0 0 36px auto;
+    max-width: 460px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.mai-hero-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.mai-hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 168px;
+    padding: 14px 22px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    transition: 0.3s ease;
+}
+
+.mai-hero-button-solid {
+    background: #fff;
+    color: #111;
+}
+
+.mai-hero-button-solid:hover {
+    background: #dcdcdc;
+}
+
+.mai-hero-button-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.mai-hero-button-outline:hover {
+    background: #fff;
+    color: #111;
+}
+
+@media (max-width: 800px) {
+    .mai-hero {
+        align-items: flex-start;
+        padding: 180px 6% 70px;
+    }
+
+    .mai-hero-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.25) 100%
+        );
+    }
+
+    .mai-hero-slide {
+        background-position: center top;
+    }
+
+    .mai-hero-content {
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .mai-hero-description,
+    .mai-hero-actions {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+}
+
+/* ==============================
+   MAITEAM ABOUT SECTION
+============================== */
+
+.mai-about {
+    padding: 100px 5% 120px;
+    background: #08090d;
+    color: #fff;
+    text-align: center;
+    overflow: visible;
+}
+
+.mai-about-heading {
+    text-align: center;
+    margin-bottom: 75px;
+}
+
+.mai-eyebrow,
+.mai-card-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    color: #e6e6e6;
+}
+
+.mai-about-heading h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin: 18px 0;
+    color: #fff;
+}
+
+.mai-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: #f0f0f0;
+}
+
+.mai-team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.mai-card-wrap {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-150px);
+}
+
+.mai-card-wrap.is-visible {
+    animation: maiBounceIn 3.2s ease-in-out both;
+}
+
+.mai-card-wrap.is-settled {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+.mai-card-wrap:nth-child(2).is-visible {
+    animation-delay: 0.45s;
+}
+
+.mai-card-wrap:nth-child(3).is-visible {
+    animation-delay: 0.9s;
+}
+
+.mai-card-wrap:nth-child(4).is-visible {
+    animation-delay: 1.35s;
+}
+
+.mai-hanger {
+    transform-origin: top center;
+}
+
+.mai-card-wrap.is-settled .mai-hanger {
+    animation: maiSwing 5.5s ease-in-out infinite;
+}
+
+.mai-hanger.is-paused {
+    animation: none !important;
+    transform: none !important;
+}
+
+.mai-lace {
+    position: relative;
+    z-index: 5;
+    width: 7px;
+    height: 52px;
+    margin: 0 auto -26px;
+    background:
+        linear-gradient(
+            90deg,
+            #8d8d8d 0%,
+            #f4f4f4 35%,
+            #cfcfcf 50%,
+            #f4f4f4 65%,
+            #8d8d8d 100%
+        );
+    border-radius: 999px;
+    box-shadow:
+        inset 1px 0 0 rgba(255, 255, 255, 0.55),
+        inset -1px 0 0 rgba(0, 0, 0, 0.28);
+    transform-origin: top center;
+}
+
+.mai-lace span {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 28px;
+    height: 16px;
+    margin-left: -14px;
+    border: 2px solid #d6d6d6;
+    border-radius: 999px;
+    background: #08090d;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.mai-id-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 460px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.mai-card-inner {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+.mai-id-card.is-flipped .mai-card-inner {
+    transform: rotateY(180deg);
+}
+
+.mai-card-front,
+.mai-card-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 42px 18px 18px;
+    overflow: hidden;
+    background: linear-gradient(165deg, #2a2d36 0%, #12141a 100%);
+    border: 1px solid #7a7a7a;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.mai-card-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.mai-card-back {
+    z-index: 1;
+    justify-content: flex-start;
+    transform: rotateY(180deg);
+}
+
+.mai-card-front:before,
+.mai-card-back:before {
+    content: none;
+}
+
+.mai-card-photo {
+    --mx: 50%;
+    --my: 50%;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 200px;
+    margin: 4px 0 14px;
+    overflow: hidden;
+    border: 1px solid #8a8a8a;
+    background: #fff;
+}
+
+.mai-card-photo-front,
+.mai-card-front img.mai-card-photo-front {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 200px !important;
+    margin: 0;
+    object-fit: contain;
+    object-position: center center;
+    border: 0;
+    background: #fff;
+    opacity: 1;
+    visibility: visible;
+}
+
+.mai-card-photo .mai-portrait-mask {
+    height: 100% !important;
+    margin: 0;
+    border: 0;
+    background: transparent;
+}
+
+.mai-card-front h3,
+.mai-card-back h3 {
+    margin: 0 0 8px;
+    width: 100%;
+    color: #fff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.mai-card-front p {
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.mai-flip-hint {
+    margin-top: auto;
+    color: #ececec;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+
+.mai-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin: 18px 0 8px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.mai-details li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mai-details span {
+    color: #c8c8c8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.mai-details strong {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.mai-card-back a {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 22px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.mai-card-back a:hover {
+    background: #fff;
+    color: #08090d;
+}
+
+@keyframes maiBounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-180px);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(-150px);
+    }
+    78% {
+        transform: translateY(10px);
+    }
+    90% {
+        transform: translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes maiSwing {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1.6deg);
+    }
+    75% {
+        transform: rotate(-1.6deg);
+    }
+}
+
+
+@media (max-width: 900px) {
+    .mai-team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 520px) {
+    .mai-about {
+        padding: 90px 6% 80px;
+    }
+
+    .mai-team-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .mai-id-card {
+        max-width: 300px;
+        margin: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-card-wrap,
+    .mai-card-wrap.is-visible,
+    .mai-card-wrap.is-visible .mai-hanger {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .mai-card-inner {
+        transition: none;
+    }
+}
+
+/* ==============================
+   MAITEAM PROJECTS
+============================== */
+
+.mai-projects {
+    padding: 20px 5% 140px;
+    background: #08090d;
+    color: #fff;
+    text-align: center;
+    scroll-margin-top: 120px;
+}
+
+.mai-projects-heading {
+    margin-bottom: 64px;
+}
+
+.mai-projects-heading h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin: 18px 0;
+    color: #fff;
+}
+
+.mai-project-carousel {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    perspective: 1400px;
+}
+
+.mai-project-viewport {
+    position: relative;
+    height: 470px;
+    margin: 0 78px;
+    overflow: visible;
+}
+
+.mai-project-slide {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    width: min(680px, 72%);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) scale(0.72);
+    transform-origin: center center;
+    z-index: 1;
+    transition:
+        transform 0.9s cubic-bezier(0.77, 0, 0.18, 1),
+        opacity 0.9s ease,
+        filter 0.9s ease,
+        z-index 0s linear 0.42s;
+}
+
+.mai-project-slide.is-active {
+    z-index: 4;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+    transition:
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.9s ease,
+        filter 0.9s ease,
+        z-index 0s;
+}
+
+.mai-project-slide.is-prev,
+.mai-project-slide.is-next {
+    z-index: 1;
+    opacity: 0.72;
+    pointer-events: auto;
+    filter: brightness(0.55);
+}
+
+.mai-project-slide.is-prev {
+    transform: translateX(calc(-50% - 102%)) scale(0.78) rotateY(14deg);
+}
+
+.mai-project-slide.is-next {
+    transform: translateX(calc(-50% + 102%)) scale(0.78) rotateY(-14deg);
+}
+
+.mai-project-slide.is-active .mai-project-shot,
+.mai-project-slide.is-active .mai-project-coming {
+    animation: mai-project-lift 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-carousel[data-dir="next"] .mai-project-slide.is-active .mai-project-shot,
+.mai-project-carousel[data-dir="next"] .mai-project-slide.is-active .mai-project-coming {
+    animation: mai-project-enter-right 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-carousel[data-dir="prev"] .mai-project-slide.is-active .mai-project-shot,
+.mai-project-carousel[data-dir="prev"] .mai-project-slide.is-active .mai-project-coming {
+    animation: mai-project-enter-left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-slide.is-active .mai-project-shot img {
+    animation: mai-project-drift 9s ease-in-out infinite alternate;
+}
+
+.mai-project-shot,
+.mai-project-coming {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 360px;
+    border: 0;
+    border-radius: 22px;
+    background: #101218;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.45s ease;
+}
+
+.mai-project-slide:hover .mai-project-shot,
+.mai-project-slide:hover .mai-project-coming {
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.4),
+        0 0 26px rgba(255, 255, 255, 0.42),
+        0 0 58px rgba(255, 255, 255, 0.22),
+        0 24px 50px rgba(0, 0, 0, 0.45);
+}
+
+.mai-project-slide:hover {
+    animation: mai-project-glow 1.35s ease-in-out infinite alternate;
+}
+
+.mai-project-shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.mai-project-slide.is-mobile .mai-project-shot {
+    background:
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08), transparent 58%),
+        #101218;
+}
+
+.mai-project-slide.is-mobile .mai-project-shot img {
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.mai-project-coming {
+    flex-direction: column;
+    gap: 12px;
+    background: linear-gradient(160deg, #243028 0%, #12141a 70%);
+}
+
+.mai-project-coming strong {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.mai-project-coming span:last-child {
+    max-width: 280px;
+    color: #e6e6e6;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.mai-project-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 16px;
+    padding: 0 8px;
+}
+
+.mai-project-caption span {
+    color: #c8c8c8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.mai-project-caption strong {
+    color: #fff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.mai-project-arrow {
+    position: absolute;
+    top: 178px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.mai-project-arrow svg {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-arrow.is-prev {
+    left: 0;
+}
+
+.mai-project-arrow.is-next {
+    right: 0;
+}
+
+.mai-project-arrow:hover svg {
+    transform: scale(1.14);
+}
+
+.mai-project-arrow.is-prev.is-pressed svg {
+    transform: translateX(-10px) scale(1.08);
+}
+
+.mai-project-arrow.is-next.is-pressed svg {
+    transform: translateX(10px) scale(1.08);
+}
+
+.mai-project-arrow:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mai-project-zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 60000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mai-project-zoom[hidden] {
+    display: none;
+}
+
+.mai-project-zoom-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.86);
+    cursor: pointer;
+}
+
+.mai-project-zoom-frame {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: min(1180px, 86vw);
+    animation: mai-project-zoom-in 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-zoom[data-dir="next"] .mai-project-zoom-frame.is-switching {
+    animation: mai-project-switch-next 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-zoom[data-dir="prev"] .mai-project-zoom-frame.is-switching {
+    animation: mai-project-switch-prev 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-project-zoom-frame .mai-project-shot,
+.mai-project-zoom-frame .mai-project-coming {
+    width: auto;
+    height: auto;
+    max-height: min(84vh, 860px);
+    overflow: visible;
+    background: transparent;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+}
+
+.mai-project-zoom-frame .mai-project-shot img {
+    width: auto;
+    height: auto;
+    max-width: min(640px, 48vw);
+    max-height: min(78vh, 760px);
+    object-fit: contain;
+}
+
+.mai-project-description {
+    flex: 0 1 340px;
+    min-height: 180px;
+    color: #fff;
+    text-align: left;
+}
+
+.mai-project-description h3 {
+    margin: 14px 0 18px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.mai-project-description-body {
+    min-height: 96px;
+    margin: 0;
+    color: #e6e6e6;
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+.mai-project-zoom-frame .mai-project-coming {
+    display: flex;
+    width: min(560px, 82vw);
+    height: min(420px, 70vh);
+    background: linear-gradient(160deg, #243028 0%, #12141a 70%);
+}
+
+.mai-project-zoom .mai-project-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.mai-project-zoom .mai-project-arrow.is-prev {
+    left: 28px;
+}
+
+.mai-project-zoom .mai-project-arrow.is-next {
+    right: 28px;
+}
+
+body.mai-project-zoomed {
+    overflow: hidden;
+}
+
+@keyframes mai-project-zoom-in {
+    from {
+        opacity: 0;
+        transform: scale(0.86);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-lift {
+    from {
+        opacity: 0.65;
+        transform: translateY(18px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-enter-right {
+    from {
+        opacity: 0.35;
+        transform: translateX(56px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-enter-left {
+    from {
+        opacity: 0.35;
+        transform: translateX(-56px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-switch-next {
+    from {
+        opacity: 0;
+        transform: translateX(72px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-switch-prev {
+    from {
+        opacity: 0;
+        transform: translateX(-72px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-project-drift {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.06);
+    }
+}
+
+@keyframes mai-project-glow {
+    from {
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.18));
+    }
+    to {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.72));
+    }
+}
+
+@media (max-width: 800px) {
+    .mai-project-viewport {
+        height: 390px;
+        margin: 0 54px;
+    }
+
+    .mai-project-slide {
+        width: 84%;
+    }
+
+    .mai-project-shot,
+    .mai-project-coming {
+        height: 250px;
+    }
+
+    .mai-project-arrow {
+        top: 128px;
+        width: 54px;
+        height: 54px;
+    }
+
+    .mai-project-arrow svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .mai-project-zoom-frame {
+        flex-direction: column;
+        gap: 22px;
+        width: min(860px, 86vw);
+    }
+
+    .mai-project-zoom-frame .mai-project-shot img {
+        max-width: min(640px, 78vw);
+        max-height: 52vh;
+    }
+
+    .mai-project-description {
+        flex-basis: auto;
+        width: min(640px, 78vw);
+        min-height: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .mai-projects {
+        padding: 10px 4% 90px;
+    }
+
+    .mai-project-slide.is-prev {
+        transform: translateX(calc(-50% - 88%)) scale(0.76) rotateY(10deg);
+    }
+
+    .mai-project-slide.is-next {
+        transform: translateX(calc(-50% + 88%)) scale(0.76) rotateY(-10deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-project-slide,
+    .mai-project-slide:hover,
+    .mai-project-zoom-frame,
+    .mai-project-slide.is-active .mai-project-shot,
+    .mai-project-slide.is-active .mai-project-coming,
+    .mai-project-slide.is-active .mai-project-shot img {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* ==============================
+   MAITEAM LANGUAGES
+============================== */
+
+.mai-languages {
+    padding: 20px 5% 140px;
+    background: #08090d;
+    color: #fff;
+    text-align: center;
+    scroll-margin-top: 120px;
+}
+
+.mai-languages-heading {
+    margin-bottom: 64px;
+}
+
+.mai-languages-heading h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin: 18px 0;
+    color: #fff;
+}
+
+.mai-language-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 0;
+    list-style: none;
+}
+
+.mai-language {
+    --align: 0;
+    --scatter-x: 0px;
+    --scatter-y: 0px;
+    --scatter-r: 0;
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    transform: translate3d(
+            calc(var(--scatter-x) * (1 - var(--align))),
+            calc(var(--scatter-y) * (1 - var(--align))),
+            0
+        )
+        rotate(calc(var(--scatter-r) * (1 - var(--align)) * 1deg))
+        scale(calc(0.88 + (var(--align) * 0.12)));
+    opacity: calc(0.4 + (var(--align) * 0.6));
+    will-change: transform, opacity;
+}
+
+.mai-language-face {
+    --glow-x: 50%;
+    --glow-y: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 92px;
+    padding: 18px 14px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 18px;
+    background: #101218;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    color: inherit;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
+
+.mai-language-name {
+    position: relative;
+    z-index: 1;
+}
+
+.mai-language-face::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(80px circle at var(--glow-x) var(--glow-y), rgba(255, 255, 255, 0.72), transparent 46%),
+        radial-gradient(190px circle at var(--glow-x) var(--glow-y), rgba(255, 255, 255, 0.28), transparent 72%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+
+.mai-language-face:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .mai-language-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .mai-languages {
+        padding: 10px 4% 90px;
+    }
+
+    .mai-language-face {
+        min-height: 76px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-language {
+        --align: 1;
+        opacity: 1;
+        transform: none;
+    }
+
+    .mai-language-face::before,
+    .mai-language-zoom-card,
+    .mai-language-zoom-text,
+    .mai-language-zoom-backdrop {
+        transition: none;
+        animation: none;
+    }
+}
+
+.mai-language-zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 60000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mai-language-zoom[hidden] {
+    display: none;
+}
+
+.mai-language-zoom-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.86);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.mai-language-zoom.is-open .mai-language-zoom-backdrop {
+    opacity: 1;
+}
+
+.mai-language-zoom-card {
+    position: relative;
+    z-index: 2;
+    width: min(420px, 86vw);
+    padding: 28px 32px 32px;
+    border-radius: 22px;
+    background: #101218;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+    color: #fff;
+    text-align: left;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.mai-language-zoom-card h3 {
+    margin: 8px 0 12px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.mai-language-zoom-text {
+    margin: 0;
+    color: #e6e6e6;
+    font-size: 16px;
+    line-height: 1.55;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.mai-language-zoom.is-open .mai-language-zoom-text {
+    opacity: 1;
+    transition: opacity 0.35s ease 0.22s;
+}
+
+body.mai-language-zoomed {
+    overflow: hidden;
+}
+
+/* ==============================
+   MAITEAM HEADER
+============================== */
+
+.mai-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50000;
+    padding: 42px 8% 22px;
+    background: transparent;
+    box-sizing: border-box;
+    transition: background 0.3s ease, border-color 0.3s ease, padding 0.3s ease, top 0.3s ease;
+}
+
+.mai-header.is-scrolled {
+    padding: 22px 8% 16px;
+    background: #08090d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.admin-bar .mai-header {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .mai-header {
+        top: 46px;
+    }
+}
+
+.mai-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.mai-logo {
+    color: #fff;
+    text-decoration: none;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.52em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.mai-navigation {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+
+.mai-navigation a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    text-transform: capitalize;
+    padding: 4px 0 8px;
+    transition: color 0.3s ease;
+}
+
+.mai-navigation a:hover,
+.mai-navigation a.is-active {
+    color: #fff;
+}
+
+.mai-navigation a:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.mai-navigation a:hover:after,
+.mai-navigation a.is-active:after {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .mai-header {
+        padding: 32px 6% 16px;
+    }
+
+    .mai-logo {
+        letter-spacing: 0.24em;
+        font-size: 10px;
+    }
+
+    .mai-header-container {
+        align-items: flex-start;
+    }
+
+    .mai-navigation {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px 14px;
+        max-width: 230px;
+    }
+
+    .mai-navigation a {
+        font-size: 12px;
+        letter-spacing: 0.1em;
+    }
+}
+
+/* ==============================
+   MAITEAM FOOTER
+============================== */
+
+.mai-footer {
+    background: #080808;
+    color: #fff;
+    padding: 55px 8% 30px;
+    text-align: center;
+}
+
+.mai-footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.mai-footer-logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.mai-footer-logo span {
+    color: #888;
+}
+
+.mai-footer-description {
+    color: #aaa;
+    font-size: 13px;
+    margin: 12px 0 30px;
+}
+
+.mai-footer-line {
+    width: 100%;
+    height: 1px;
+    background: #333;
+    margin-bottom: 25px;
+}
+
+.mai-footer-copyright {
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ==============================
+   MEMBER MORE INFO PAGE
+============================== */
+
+html:has(body.mai-member-body) {
+    scrollbar-width: none;
+}
+
+html:has(body.mai-member-body)::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.mai-member-body {
+    background: #08090d;
+    color: #fff;
+    scrollbar-width: none;
+}
+
+.mai-member-body .mai-header {
+    background: rgba(8, 8, 8, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mai-member-overlay {
+    --ox: 50%;
+    --oy: 50%;
+    position: fixed;
+    top: 76px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40000;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: #08090d;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    clip-path: circle(0 at var(--ox) var(--oy));
+    transition:
+        opacity 0.35s ease,
+        clip-path 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mai-member-overlay::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.mai-member-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    clip-path: circle(160vmax at var(--ox) var(--oy));
+}
+
+.mai-member-overlay.is-leaving {
+    opacity: 0;
+    pointer-events: none;
+    clip-path: circle(0 at var(--ox) var(--oy));
+    transition:
+        opacity 0.28s ease 0.18s,
+        clip-path 0.5s cubic-bezier(0.4, 0, 0.7, 0.2);
+}
+
+.mai-member-overlay[hidden] {
+    display: none !important;
+}
+
+.mai-member-overlay .mai-member {
+    display: none;
+}
+
+.mai-member-overlay .mai-member.is-active {
+    display: block;
+}
+
+@keyframes mai-rise {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mai-portrait-in {
+    from {
+        opacity: 0;
+        transform: rotateY(-24deg) scale(0.82) translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.mai-appear {
+    opacity: 0;
+    transform: translateY(36px);
+}
+
+.mai-appear.is-in {
+    animation: mai-rise 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--appear-delay, 0s);
+}
+
+.mai-appear.mai-appear-tilt.is-in {
+    animation-name: mai-portrait-in;
+    animation-duration: 0.9s;
+}
+
+.mai-appear.is-in.is-settled {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-appear,
+    .mai-appear.is-in,
+    .mai-appear.is-in.is-settled {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+body.admin-bar .mai-member-overlay {
+    top: 108px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .mai-member-overlay {
+        top: 122px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mai-member-overlay {
+        top: 70px;
+    }
+}
+
+body.mai-member-open {
+    overflow: hidden;
+}
+
+body.mai-member-open .mai-header,
+.mai-member-body .mai-header {
+    background: #08090d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mai-member,
+.mai-member-page {
+    padding: 28px 8% 80px;
+    background: #08090d;
+    color: #fff;
+}
+
+.mai-member-page .mai-member {
+    padding: 0;
+}
+
+.mai-member-nav {
+    position: sticky;
+    top: 12px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 48px;
+}
+
+body.admin-bar .mai-member-nav {
+    top: 12px;
+}
+
+.mai-member-back {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 999px;
+    background: #111;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mai-member-back:hover {
+    color: #fff;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 22px rgba(255, 255, 255, 0.45);
+}
+
+.mai-pill-nav {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 8px;
+    overflow-x: auto;
+    background: #111;
+    border-radius: 999px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.mai-pill-nav a {
+    flex: 0 0 auto;
+    padding: 12px 22px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mai-pill-nav a:hover,
+.mai-pill-nav a.is-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 22px rgba(255, 255, 255, 0.45);
+}
+
+.mai-member-section {
+    max-width: 1080px;
+    margin: 0 auto 90px;
+    text-align: center;
+    scroll-margin-top: 168px;
+}
+
+.mai-school-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.mai-school-card {
+    min-height: 210px;
+    padding: 28px 24px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: linear-gradient(165deg, #2a2d36 0%, #12141a 100%);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mai-school-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.16),
+        0 0 28px rgba(255, 255, 255, 0.42);
+}
+
+.mai-school-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    color: #f4f4f4;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.mai-school-card:hover .mai-school-logo {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.55);
+}
+
+.mai-school-logo svg,
+.mai-school-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.mai-school-logo.has-photo {
+    width: 128px;
+    height: 128px;
+    border-radius: 0;
+    background: transparent;
+    border-color: transparent;
+}
+
+.mai-school-logo.has-photo img {
+    width: 100%;
+    height: 100%;
+}
+
+.mai-school-card:hover .mai-school-logo.has-photo {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.45));
+}
+
+.mai-school-card span {
+    display: block;
+    margin-bottom: 14px;
+    color: #c8c8c8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.mai-school-card strong {
+    color: #fff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.mai-member-section h1,
+.mai-member-section h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin: 14px 0 10px;
+}
+
+.mai-member-section h1 {
+    font-size: clamp(32px, 5vw, 56px);
+}
+
+.mai-member-section h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    margin-bottom: 36px;
+}
+
+.mai-member-role {
+    margin: 0 0 42px;
+    color: #d8d8d8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.mai-member-profile {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 42px;
+    align-items: start;
+    text-align: left;
+    perspective: 900px;
+}
+
+.mai-member-portrait {
+    --mx: 50%;
+    --my: 50%;
+    position: relative;
+    overflow: visible;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    transform-style: preserve-3d;
+    transition: transform 0.18s ease-out, filter 0.3s ease;
+    will-change: transform;
+}
+
+.mai-member-portrait.is-hovering {
+    filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
+}
+
+.mai-portrait-front {
+    display: block;
+    width: 100%;
+    height: 360px;
+    object-fit: contain;
+    object-position: center top;
+}
+
+.mai-portrait-head {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    -webkit-mask-image: radial-gradient(circle 120px at var(--mx) var(--my), #000 0%, #000 38%, transparent 72%);
+    mask-image: radial-gradient(circle 120px at var(--mx) var(--my), #000 0%, #000 38%, transparent 72%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    transition: opacity 0.16s ease;
+}
+
+.mai-portrait-head.is-on {
+    opacity: 1;
+}
+
+.mai-portrait-mask {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center 40%;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transform-origin: center 20%;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+}
+
+.mai-member[data-member="mark-lorence"] .mai-portrait-mask {
+    transform: translateY(-22px) scale(1.45);
+}
+
+.mai-id-card[data-member="mark-lorence"] .mai-portrait-mask {
+    transform: translateY(-6px) scale(1.12);
+}
+
+.mai-member[data-member="honey-rose"] .mai-portrait-mask {
+    transform: translateY(-8px) scale(1.18);
+}
+
+.mai-id-card[data-member="honey-rose"] .mai-portrait-mask {
+    transform: translateY(-4px) scale(1.06);
+}
+
+.mai-member[data-member="qeeundilyn"] .mai-portrait-mask {
+    transform: translateY(-14px) scale(1.38);
+}
+
+.mai-id-card[data-member="qeeundilyn"] .mai-portrait-mask {
+    transform: translateY(-6px) scale(1.18);
+}
+
+.mai-member[data-member="michelou"] .mai-portrait-mask {
+    transform: translateY(-12px) scale(1.32);
+}
+
+.mai-id-card[data-member="michelou"] .mai-portrait-mask {
+    transform: translateY(-5px) scale(1.14);
+}
+
+.mai-member-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mai-member-details li {
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mai-member-details span {
+    display: block;
+    margin-bottom: 6px;
+    color: #c8c8c8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.mai-member-details strong {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.mai-member-dreams {
+    margin-top: 48px;
+    padding: 32px 28px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: linear-gradient(165deg, #2a2d36 0%, #12141a 100%);
+}
+
+.mai-member-dreams p:last-child {
+    margin: 12px 0 0;
+    color: #ececec;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.mai-fav-fan {
+    position: relative;
+    height: 460px;
+    margin: 28px auto 8px;
+    max-width: 920px;
+}
+
+.mai-fav-card {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    z-index: calc(2 + var(--i));
+    width: 188px;
+    margin: 0;
+    padding: 10px 10px 8px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f4f4f4;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.38);
+    cursor: pointer;
+    transform: translate(-50%, -50%) rotate(calc(var(--i) * 1.4deg)) translateX(calc(var(--i) * 3px));
+    transform-origin: center 120%;
+    transition:
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.45s ease,
+        z-index 0s linear 0.2s;
+    transition-delay: calc(var(--i) * 55ms);
+}
+
+.mai-fav-fan.is-fanned .mai-fav-card {
+    transform:
+        translate(-50%, -50%)
+        rotate(calc((var(--i) - 2) * 15deg))
+        translateX(calc((var(--i) - 2) * 86px))
+        translateY(calc((var(--i) - 2) * (var(--i) - 2) * 6px));
+}
+
+.mai-fav-fan.is-fanned .mai-fav-card.is-chosen {
+    z-index: 30;
+    transform: translate(-50%, -50%) rotate(0deg) translateY(-18px) scale(1.16);
+    box-shadow: 0 28px 48px rgba(0, 0, 0, 0.5);
+    transition-delay: 0s;
+}
+
+.mai-fav-card img {
+    display: block;
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #ddd;
+}
+
+.mai-fav-card figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 4px 6px;
+}
+
+.mai-fav-card span {
+    color: #1a1a1a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.mai-fav-caption {
+    min-height: 28px;
+    margin: 0;
+    color: #ececec;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+.mai-heart {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.08);
+    color: #111;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mai-heart svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #222;
+    stroke-width: 1.8;
+}
+
+.mai-heart.is-liked {
+    background: rgba(255, 77, 109, 0.18);
+}
+
+.mai-heart.is-liked svg {
+    fill: #ff4d6d;
+    stroke: #ff4d6d;
+}
+
+.mai-heart:hover {
+    transform: scale(1.08);
+}
+
+.mai-one-only {
+    margin: 0;
+}
+
+.mai-one-only-frame {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.mai-one-only img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.mai-one-hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.mai-float-heart {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 36px;
+    line-height: 1;
+    color: #ff4d6d;
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.85),
+        0 0 18px rgba(255, 77, 109, 0.95),
+        0 8px 18px rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+    will-change: transform, opacity;
+    animation: mai-cursor-heart 1.35s ease-out forwards;
+}
+
+@keyframes mai-cursor-heart {
+    0% {
+        transform: translate(-50%, -50%) scale(0.45) rotate(-10deg);
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15) rotate(0deg);
+    }
+    100% {
+        transform: translate(calc(-50% + var(--drift, 0px)), calc(-50% - 170px)) scale(1.45) rotate(16deg);
+        opacity: 0;
+    }
+}
+
+.mai-one-hint {
+    max-width: 720px;
+    margin: 0 auto 22px;
+    color: #ececec;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.mai-one-hint-overlay {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    z-index: 4;
+    margin: 0;
+    padding: 12px 22px;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.mai-one-only-frame.is-hovering .mai-one-hint-overlay {
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-float-heart {
+        animation: none;
+        opacity: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .mai-one-only-frame {
+        height: 380px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mai-one-only-frame {
+        height: 300px;
+    }
+}
+
+.mai-one-only figcaption {
+    max-width: 720px;
+    margin: 22px auto 0;
+    color: #ddd;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .mai-member-profile,
+    .mai-member-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mai-fav-card {
+        width: 150px;
+    }
+
+    .mai-fav-fan.is-fanned .mai-fav-card {
+        transform:
+            translate(-50%, -50%)
+            rotate(calc((var(--i) - 2) * 12deg))
+            translateX(calc((var(--i) - 2) * 58px))
+            translateY(calc((var(--i) - 2) * (var(--i) - 2) * 7px));
+    }
+
+    .mai-member-portrait {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .mai-member-profile {
+        text-align: center;
+    }
+
+    .mai-member-nav {
+        padding-top: 48px;
+    }
+
+    .mai-member-back {
+        top: 0;
+        transform: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .mai-member,
+    .mai-member-page {
+        padding: 20px 5% 60px;
+    }
+
+    .mai-member-nav {
+        top: 8px;
+    }
+
+    .mai-member-profile,
+    .mai-member-details,
+    .mai-school-list {
+        grid-template-columns: 1fr;
+    }
+
+    .mai-fav-fan {
+        height: 400px;
+    }
+
+    .mai-fav-card {
+        width: 132px;
+    }
+
+    .mai-fav-card img {
+        height: 160px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-member-portrait,
+    .mai-member-portrait img,
+    .mai-member-portrait:before,
+    .mai-member-overlay,
+    .mai-member-overlay.is-open,
+    .mai-member-overlay.is-leaving {
+        transition: none;
+        transform: none !important;
+        animation: none !important;
+        clip-path: none;
+        opacity: 1;
+    }
+}
