@@ -7,7 +7,8 @@
         { id: "home", el: document.getElementById("home") },
         { id: "mai-about", el: document.getElementById("mai-about") },
         { id: "mai-projects", el: document.getElementById("mai-projects") },
-        { id: "mai-languages", el: document.getElementById("mai-languages") }
+        { id: "mai-languages", el: document.getElementById("mai-languages") },
+        { id: "contact", el: document.getElementById("contact") }
     ];
 
     function scrollToSection(id) {
@@ -660,7 +661,7 @@
         appearNodes.push({ el: el, root: root || null });
     }
 
-    document.querySelectorAll(".mai-hero-content > *, .mai-about-heading > *, .mai-projects-heading > *, .mai-languages-heading > *, .mai-footer-container > *").forEach(function (el) {
+    document.querySelectorAll(".mai-hero-content > *, .mai-about-heading > *, .mai-projects-heading > *, .mai-languages-heading > *, .mai-contact-heading > *, .mai-contact-form-title, .mai-contact-form .mai-field, .mai-contact-send, .mai-contact-side > .mai-eyebrow, .mai-contact-side-copy, .mai-social, .mai-contact-write, .mai-contact-people > li, .mai-footer-container > *").forEach(function (el) {
         addAppear(el, null, false);
     });
 
@@ -1099,5 +1100,109 @@
 
             requestAnimationFrame(followLanguageAlign);
         }
+    }
+
+    const contactDrawer = document.querySelector(".mai-contact-drawer");
+    let contactDrawerTimer = 0;
+
+    function fillContactDrawer(button) {
+        const name = button.getAttribute("data-name") || "";
+        const role = button.getAttribute("data-role") || "";
+        const phone = button.getAttribute("data-phone") || "";
+        const email = button.getAttribute("data-email") || "";
+        const portrait = button.getAttribute("data-portrait") || "";
+        const more = button.getAttribute("data-more") || "#";
+        const photo = contactDrawer.querySelector(".mai-contact-drawer-photo");
+        const phoneLink = contactDrawer.querySelector(".mai-contact-drawer-phone");
+        const emailLink = contactDrawer.querySelector(".mai-contact-drawer-email");
+
+        contactDrawer.querySelector("#mai-contact-drawer-name").textContent = name;
+        contactDrawer.querySelector(".mai-contact-drawer-role").textContent = role;
+        photo.src = portrait;
+        photo.alt = name;
+        phoneLink.textContent = phone;
+        phoneLink.href = "tel:" + phone.replace(/[^\d+]/g, "");
+        emailLink.textContent = email;
+        emailLink.href = "mailto:" + email;
+        contactDrawer.querySelector(".mai-contact-drawer-more").href = more;
+    }
+
+    function openContactDrawer(button) {
+        if (!contactDrawer) {
+            return;
+        }
+
+        window.clearTimeout(contactDrawerTimer);
+        fillContactDrawer(button);
+        contactDrawer.hidden = false;
+        document.body.classList.add("mai-contact-open");
+        window.requestAnimationFrame(function () {
+            contactDrawer.classList.add("is-open");
+        });
+    }
+
+    function closeContactDrawer() {
+        if (!contactDrawer || contactDrawer.hidden) {
+            return;
+        }
+
+        contactDrawer.classList.remove("is-open");
+        document.body.classList.remove("mai-contact-open");
+        contactDrawerTimer = window.setTimeout(function () {
+            contactDrawer.hidden = true;
+        }, 420);
+    }
+
+    document.querySelectorAll(".mai-contact-person").forEach(function (button) {
+        button.addEventListener("click", function () {
+            openContactDrawer(button);
+        });
+    });
+
+    if (contactDrawer) {
+        contactDrawer.querySelector(".mai-contact-drawer-backdrop").addEventListener("click", closeContactDrawer);
+        contactDrawer.querySelector(".mai-contact-drawer-close").addEventListener("click", closeContactDrawer);
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeContactDrawer();
+        }
+    });
+
+    const contactForm = document.querySelector(".mai-contact-form");
+
+    if (contactForm) {
+        const contactNote = contactForm.querySelector(".mai-contact-note");
+
+        contactForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = (contactForm.querySelector('[name="name"]').value || "").trim();
+            const email = (contactForm.querySelector('[name="email"]').value || "").trim();
+            const message = (contactForm.querySelector('[name="message"]').value || "").trim();
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+            contactForm.querySelectorAll(".mai-field").forEach(function (field) {
+                const input = field.querySelector("input, textarea");
+                const value = (input.value || "").trim();
+                const invalid = input.type === "email" ? !emailOk : value === "";
+                field.classList.toggle("is-invalid", invalid);
+            });
+
+            if (!name || !emailOk || !message) {
+                contactNote.hidden = false;
+                contactNote.textContent = "Add your name, a real email, and a short message.";
+                return;
+            }
+
+            const mail = contactForm.getAttribute("data-mail") || "";
+            const subject = encodeURIComponent("Hello from " + name);
+            const body = encodeURIComponent(message + "\n\n" + name + "\n" + email);
+
+            contactNote.hidden = false;
+            contactNote.textContent = "Your email app should open with this message ready to send.";
+            window.location.href = "mailto:" + mail + "?subject=" + subject + "&body=" + body;
+        });
     }
 })();

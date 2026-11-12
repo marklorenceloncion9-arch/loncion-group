@@ -1,5 +1,5 @@
 
-<footer class="mai-footer" id="contact">
+<footer class="mai-footer">
 
     <div class="mai-footer-container">
 

@@ -18,6 +18,7 @@ $home_href = $is_member ? home_url('/#home') : '#home';
 $about_href = $is_member ? home_url('/#mai-about') : '#mai-about';
 $projects_href = $is_member ? home_url('/#mai-projects') : '#mai-projects';
 $languages_href = $is_member ? home_url('/#mai-languages') : '#mai-languages';
+$contact_href = $is_member ? home_url('/#contact') : '#contact';
 ?>
 
 <header class="mai-header">
@@ -33,6 +34,7 @@ $languages_href = $is_member ? home_url('/#mai-languages') : '#mai-languages';
             <a href="<?php echo esc_url($about_href); ?>">About Us</a>
             <a href="<?php echo esc_url($projects_href); ?>">Projects</a>
             <a href="<?php echo esc_url($languages_href); ?>">Languages</a>
+            <a href="<?php echo esc_url($contact_href); ?>">Contact</a>
         </nav>
 
     </div>

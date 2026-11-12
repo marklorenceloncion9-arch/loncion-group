@@ -29,10 +29,6 @@ img {
     height: auto;
 }
 
-/* ==============================
-   MAITEAM HERO SECTION
-============================== */
-
 .mai-hero {
     position: relative;
     min-height: 100vh;
@@ -175,10 +171,6 @@ img {
         justify-content: flex-start;
     }
 }
-
-/* ==============================
-   MAITEAM ABOUT SECTION
-============================== */
 
 .mai-about {
     padding: 100px 5% 120px;
@@ -549,10 +541,6 @@ img {
         transition: none;
     }
 }
-
-/* ==============================
-   MAITEAM PROJECTS
-============================== */
 
 .mai-projects {
     padding: 20px 5% 140px;
@@ -1060,10 +1048,6 @@ body.mai-project-zoomed {
     }
 }
 
-/* ==============================
-   MAITEAM LANGUAGES
-============================== */
-
 .mai-languages {
     padding: 20px 5% 140px;
     background: #08090d;
@@ -1258,10 +1242,6 @@ body.mai-language-zoomed {
     overflow: hidden;
 }
 
-/* ==============================
-   MAITEAM HEADER
-============================== */
-
 .mai-header {
     position: fixed;
     top: 0;
@@ -1350,6 +1330,17 @@ body.admin-bar .mai-header {
     width: 100%;
 }
 
+@media (max-width: 1100px) {
+    .mai-navigation {
+        gap: 20px;
+    }
+
+    .mai-navigation a {
+        letter-spacing: 0.12em;
+        font-size: 12px;
+    }
+}
+
 @media (max-width: 600px) {
     .mai-header {
         padding: 32px 6% 16px;
@@ -1376,10 +1367,6 @@ body.admin-bar .mai-header {
         letter-spacing: 0.1em;
     }
 }
-
-/* ==============================
-   MAITEAM FOOTER
-============================== */
 
 .mai-footer {
     background: #080808;
@@ -1422,10 +1409,6 @@ body.admin-bar .mai-header {
     letter-spacing: 1px;
     margin: 0;
 }
-
-/* ==============================
-   MEMBER MORE INFO PAGE
-============================== */
 
 html:has(body.mai-member-body) {
     scrollbar-width: none;
@@ -2246,5 +2229,434 @@ body.admin-bar .mai-member-nav {
         animation: none !important;
         clip-path: none;
         opacity: 1;
+    }
+}
+
+.mai-contact {
+    position: relative;
+    padding: 40px 6% 120px;
+    background:
+        radial-gradient(520px 240px at 18% 0%, rgba(255, 255, 255, 0.06), transparent 70%),
+        #08090d;
+    color: #fff;
+    scroll-margin-top: 120px;
+}
+
+.mai-contact-heading {
+    max-width: 720px;
+    margin: 0 auto 64px;
+    text-align: center;
+}
+
+.mai-contact-heading h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin: 18px 0;
+    color: #fff;
+}
+
+.mai-contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.mai-contact-form,
+.mai-contact-side {
+    background: #101218;
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.mai-contact-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 36px 36px 32px;
+    text-align: left;
+}
+
+.mai-contact-form-title {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.mai-field {
+    display: block;
+}
+
+.mai-field-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.mai-field-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.mai-field input,
+.mai-field textarea {
+    width: 100%;
+    margin: 0;
+    padding: 12px 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.mai-field input:focus,
+.mai-field textarea:focus {
+    outline: none;
+    border-bottom-color: #fff;
+}
+
+.mai-field.is-invalid input,
+.mai-field.is-invalid textarea {
+    border-bottom-color: #e7b2b2;
+}
+
+.mai-contact-note {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+.mai-contact-send {
+    align-self: flex-start;
+    min-width: 188px;
+    margin-top: 4px;
+    padding: 14px 22px;
+    border: 0;
+    background: #fff;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.mai-contact-send:hover {
+    background: #dcdcdc;
+}
+
+.mai-contact-side {
+    padding: 36px 28px 32px;
+    box-sizing: border-box;
+}
+
+.mai-contact-side-copy {
+    margin: 14px 0 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.mai-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mai-social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.mai-social svg {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+}
+
+.mai-social span {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.mai-social:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #111;
+}
+
+.mai-contact-write {
+    max-width: 1080px;
+    margin: 48px auto 18px;
+    text-align: center;
+}
+
+.mai-contact-people {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.mai-contact-people li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 18px;
+    border-radius: 16px;
+    background: #101218;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.mai-contact-person {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mai-contact-people strong {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.mai-contact-person:hover strong,
+.mai-contact-person:focus-visible strong {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.mai-contact-people span,
+.mai-contact-people a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.mai-contact-people a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.mai-contact-people a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+    .mai-contact {
+        padding: 20px 5% 90px;
+    }
+
+    .mai-contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .mai-contact-form {
+        padding: 28px 22px 24px;
+    }
+
+    .mai-contact-people {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .mai-contact-people {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mai-contact-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 65000;
+}
+
+.mai-contact-drawer[hidden] {
+    display: none;
+}
+
+.mai-contact-drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.72);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.mai-contact-drawer.is-open .mai-contact-drawer-backdrop {
+    opacity: 1;
+}
+
+.mai-contact-drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(420px, 92vw);
+    height: 100%;
+    margin: 0;
+    padding: 36px 32px 40px;
+    box-sizing: border-box;
+    background: #101218;
+    color: #fff;
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.45);
+    transform: translateX(110%);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.mai-contact-drawer.is-open .mai-contact-drawer-panel {
+    transform: none;
+}
+
+.mai-contact-drawer-close {
+    align-self: flex-end;
+    margin: 0 0 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.mai-contact-drawer-close:hover {
+    color: #fff;
+}
+
+.mai-contact-drawer-top {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.mai-contact-drawer-photo {
+    width: 148px;
+    height: 186px;
+    flex: 0 0 auto;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 16px;
+    background: #08090d;
+}
+
+.mai-contact-drawer-panel h3 {
+    margin: 10px 0 8px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.05;
+}
+
+.mai-contact-drawer-role,
+.mai-contact-drawer-phone,
+.mai-contact-drawer-email {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.mai-contact-drawer-phone,
+.mai-contact-drawer-email {
+    color: #fff;
+    text-decoration: none;
+}
+
+.mai-contact-drawer-phone {
+    margin-top: 22px;
+}
+
+.mai-contact-drawer-email {
+    margin-top: 6px;
+    word-break: break-word;
+}
+
+.mai-contact-drawer-phone:hover,
+.mai-contact-drawer-email:hover {
+    text-decoration: underline;
+}
+
+.mai-contact-drawer-more {
+    display: inline-flex;
+    margin-top: 28px;
+    padding: 14px 22px;
+    background: #fff;
+    color: #111;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.mai-contact-drawer-more:hover {
+    background: #dcdcdc;
+}
+
+body.mai-contact-open {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-contact-send,
+    .mai-social,
+    .mai-contact-drawer-backdrop,
+    .mai-contact-drawer-panel {
+        transition: none;
+        animation: none;
     }
 }

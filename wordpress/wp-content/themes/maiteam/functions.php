@@ -16,14 +16,14 @@ function maiteam_enqueue_assets() {
         'maiteam-main',
         get_template_directory_uri() . '/assets/css/main.css',
         array('maiteam-fonts'),
-        '7.30'
+        '7.55'
     );
 
     wp_enqueue_style(
         'maiteam-cover',
         get_template_directory_uri() . '/assets/css/intro-cover.css',
         array('maiteam-main'),
-        '2.0'
+        '2.1'
     );
 
     wp_enqueue_script(
@@ -38,7 +38,7 @@ function maiteam_enqueue_assets() {
         'maiteam-main',
         get_template_directory_uri() . '/assets/js/main.js',
         array(),
-        '7.30',
+        '7.54',
         true
     );
 

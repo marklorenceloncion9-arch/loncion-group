@@ -72,7 +72,7 @@ function maiteam_get_members() {
                     'logo' => maiteam_theme_img('rivera/college.png'),
                 ),
             ),
-            'phone'     => '+63 917 000 0002',
+            'phone'     => '09262280185',
             'email'     => 'honey.rivera@maiteam.group',
             'portrait'  => maiteam_img('Professional-Portrait-on-White-Background.png'),
             'hover'     => maiteam_theme_img('rivera-spidergwen.png'),
