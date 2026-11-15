@@ -1169,9 +1169,18 @@ body.mai-project-zoomed {
     .mai-language-face::before,
     .mai-language-zoom-card,
     .mai-language-zoom-text,
-    .mai-language-zoom-backdrop {
+    .mai-language-zoom-backdrop,
+    .mai-code-line,
+    .mai-language-result,
+    .mai-language-out.is-typing::after {
         transition: none;
         animation: none;
+    }
+
+    .mai-code-line,
+    .mai-language-result {
+        opacity: 1;
+        transform: none;
     }
 }
 
@@ -1205,8 +1214,10 @@ body.mai-project-zoomed {
 .mai-language-zoom-card {
     position: relative;
     z-index: 2;
-    width: min(420px, 86vw);
+    width: min(560px, 92vw);
+    max-height: min(86vh, 760px);
     padding: 28px 32px 32px;
+    overflow: auto;
     border-radius: 22px;
     background: #101218;
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
@@ -1236,6 +1247,149 @@ body.mai-project-zoomed {
 .mai-language-zoom.is-open .mai-language-zoom-text {
     opacity: 1;
     transition: opacity 0.35s ease 0.22s;
+}
+
+.mai-language-editor {
+    margin-top: 22px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #08090d;
+}
+
+.mai-language-editor-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px 10px 16px;
+}
+
+.mai-language-file {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.mai-language-run {
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    padding: 8px 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+}
+
+.mai-language-run:hover {
+    background: #dcdcdc;
+}
+
+.mai-language-code {
+    margin: 0;
+    padding: 2px 16px 16px;
+    overflow-x: auto;
+    color: #f4f4f4;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.mai-code-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(10px);
+    white-space: pre;
+}
+
+.mai-language-zoom-card.is-playing .mai-code-line {
+    animation: mai-code-in 0.4s ease forwards;
+}
+
+@keyframes mai-code-in {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.mai-language-result {
+    margin-top: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.mai-language-zoom-card.is-playing .mai-language-result {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.4s ease 0.42s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.42s;
+}
+
+.mai-language-result .mai-eyebrow {
+    margin: 0;
+}
+
+.mai-language-out {
+    min-height: 1.5em;
+    margin: 8px 0 0;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #08090d;
+    color: #fff;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.mai-language-out.is-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+.mai-language-out.is-swatch {
+    background: #1a1d24;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.mai-language-out.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 0.95em;
+    margin-left: 3px;
+    background: #fff;
+    vertical-align: text-bottom;
+    animation: mai-caret 0.7s steps(1) infinite;
+}
+
+@keyframes mai-caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mai-code-line,
+    .mai-language-result {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .mai-language-zoom-card.is-playing .mai-code-line,
+    .mai-language-zoom-card.is-playing .mai-language-result,
+    .mai-language-out.is-typing::after {
+        transition: none;
+        animation: none;
+    }
 }
 
 body.mai-language-zoomed {

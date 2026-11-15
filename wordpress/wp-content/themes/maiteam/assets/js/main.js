@@ -964,11 +964,99 @@
         const languageZoomTitle = languageZoom ? languageZoom.querySelector("h3") : null;
         const languageZoomText = languageZoom ? languageZoom.querySelector(".mai-language-zoom-text") : null;
         const languageZoomCard = languageZoom ? languageZoom.querySelector(".mai-language-zoom-card") : null;
+        const languageCode = languageZoom ? languageZoom.querySelector(".mai-language-code") : null;
+        const languageOut = languageZoom ? languageZoom.querySelector(".mai-language-out") : null;
+        const languageFile = languageZoom ? languageZoom.querySelector(".mai-language-file") : null;
+        const languageRun = languageZoom ? languageZoom.querySelector(".mai-language-run") : null;
         let languageOrigin = null;
         let languageClosing = false;
+        let languagePlayTimer = null;
+        let languageTypeTimer = null;
+
+        function stopLanguagePlay() {
+            window.clearTimeout(languagePlayTimer);
+            window.clearTimeout(languageTypeTimer);
+
+            if (languageOut) {
+                languageOut.classList.remove("is-typing");
+            }
+        }
+
+        function playLanguage(face) {
+            if (!face || !languageZoomCard || !languageCode || !languageOut) {
+                return;
+            }
+
+            const item = face.closest(".mai-language");
+            const source = item ? item.querySelector("template") : null;
+
+            if (!source) {
+                return;
+            }
+
+            const codeNode = source.content.querySelector("pre");
+            const outputNode = source.content.querySelector("span");
+            const code = (codeNode ? codeNode.textContent : "").replace(/^\n/, "").replace(/\s+$/, "");
+            const output = outputNode ? outputNode.textContent : "";
+            const preview = face.getAttribute("data-preview") || "";
+            const lines = code.split("\n");
+
+            stopLanguagePlay();
+            languageFile.textContent = face.getAttribute("data-file") || "";
+            languageCode.textContent = "";
+            languageOut.textContent = "";
+            languageOut.classList.remove("is-heading", "is-swatch", "is-typing");
+
+            if (preview === "heading") {
+                languageOut.classList.add("is-heading");
+            }
+
+            if (preview === "swatch") {
+                languageOut.classList.add("is-swatch");
+            }
+
+            lines.forEach(function (line, index) {
+                const span = document.createElement("span");
+                span.className = "mai-code-line";
+                span.textContent = line === "" ? "\u00a0" : line;
+                span.style.animationDelay = (0.28 + index * 0.08) + "s";
+                languageCode.appendChild(span);
+            });
+
+            languageZoomCard.classList.remove("is-playing");
+            void languageZoomCard.offsetWidth;
+            languageZoomCard.classList.add("is-playing");
+
+            function showOutput() {
+                if (reducedMotion) {
+                    languageOut.textContent = output;
+                    return;
+                }
+
+                let index = 0;
+                languageOut.classList.add("is-typing");
+
+                function step() {
+                    index += 1;
+                    languageOut.textContent = output.slice(0, index);
+
+                    if (index < output.length) {
+                        languageTypeTimer = window.setTimeout(step, 34);
+                        return;
+                    }
+
+                    languageOut.classList.remove("is-typing");
+                }
+
+                step();
+            }
+
+            languagePlayTimer = window.setTimeout(showOutput, reducedMotion ? 0 : 420 + lines.length * 80);
+        }
 
         function finishLanguageClose() {
             languageClosing = false;
+            stopLanguagePlay();
 
             if (!languageZoom) {
                 return;
@@ -978,6 +1066,7 @@
             document.body.classList.remove("mai-language-zoomed");
 
             if (languageZoomCard) {
+                languageZoomCard.classList.remove("is-playing");
                 languageZoomCard.style.transition = "none";
                 languageZoomCard.style.transform = "none";
             }
@@ -1028,6 +1117,7 @@
             placeLanguageCard(face, true);
             void languageZoom.offsetWidth;
             languageZoom.classList.add("is-open");
+            playLanguage(face);
         }
 
         function closeLanguage() {
@@ -1067,6 +1157,12 @@
 
             if (languageBackdrop) {
                 languageBackdrop.addEventListener("click", closeLanguage);
+            }
+
+            if (languageRun) {
+                languageRun.addEventListener("click", function () {
+                    playLanguage(languageOrigin);
+                });
             }
         }
 
