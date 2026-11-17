@@ -668,7 +668,7 @@
     document.querySelectorAll(".mai-member-section").forEach(function (section) {
         const root = section.closest("#mai-member-overlay") || null;
 
-        section.querySelectorAll(":scope > .mai-eyebrow, :scope > h1, :scope > h2, :scope > .mai-member-role, :scope > .mai-member-dreams, :scope > .mai-school-list, :scope > .mai-fav-fan, :scope > .mai-fav-caption, :scope > .mai-one-hint, :scope > .mai-one-only").forEach(function (el) {
+        section.querySelectorAll(":scope > .mai-eyebrow, :scope > h1, :scope > h2, :scope > .mai-member-role, :scope > .mai-member-dreams, :scope > .mai-school-lead, :scope > .mai-fav-fan, :scope > .mai-fav-caption, :scope > .mai-one-hint, :scope > .mai-one-only").forEach(function (el) {
             addAppear(el, root, false);
         });
 
@@ -680,6 +680,49 @@
             addAppear(el, root, false);
         });
     });
+
+    const schoolTimelines = document.querySelectorAll(".mai-school-timeline");
+    const schoolMotionReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function syncSchoolLines() {
+        schoolTimelines.forEach(function (timeline) {
+            const line = timeline.querySelector(".mai-school-line");
+            const dots = timeline.querySelectorAll(".mai-school-dot");
+
+            if (!line || !dots.length) {
+                return;
+            }
+
+            const timelineRect = timeline.getBoundingClientRect();
+            const first = dots[0].getBoundingClientRect();
+            const last = dots[dots.length - 1].getBoundingClientRect();
+            const start = first.top + first.height / 2 - timelineRect.top;
+            const end = last.top + last.height / 2 - timelineRect.top;
+            const track = Math.max(end - start, 1);
+            const tip = (window.innerHeight || document.documentElement.clientHeight) * 0.62;
+            let progress = schoolMotionReduced ? 1 : (tip - timelineRect.top - start) / track;
+
+            progress = Math.max(0, Math.min(1, progress));
+
+            line.style.top = start + "px";
+            line.style.height = (track * progress) + "px";
+            line.classList.toggle("is-drawing", progress > 0.02 && progress < 0.995);
+
+            dots.forEach(function (dot) {
+                const dotRect = dot.getBoundingClientRect();
+                const dotY = dotRect.top + dotRect.height / 2 - timelineRect.top;
+                dot.classList.toggle("is-lit", dotY <= start + track * progress + 8);
+            });
+        });
+    }
+
+    syncSchoolLines();
+    window.addEventListener("scroll", syncSchoolLines, { passive: true });
+    window.addEventListener("resize", syncSchoolLines);
+
+    if (memberOverlay) {
+        memberOverlay.addEventListener("scroll", syncSchoolLines, { passive: true });
+    }
 
     function appearRootIsActive(root) {
         if (!root) {

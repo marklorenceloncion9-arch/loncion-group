@@ -16,7 +16,7 @@ function maiteam_enqueue_assets() {
         'maiteam-main',
         get_template_directory_uri() . '/assets/css/main.css',
         array('maiteam-fonts'),
-        '7.57'
+        '7.65'
     );
 
     wp_enqueue_style(
@@ -38,7 +38,7 @@ function maiteam_enqueue_assets() {
         'maiteam-main',
         get_template_directory_uri() . '/assets/js/main.js',
         array(),
-        '7.56',
+        '7.58',
         true
     );
 

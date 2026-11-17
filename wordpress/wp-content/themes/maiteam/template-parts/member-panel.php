@@ -59,9 +59,10 @@ $home    = home_url('/');
         </div>
     </section>
 
-    <section class="mai-member-section" id="<?php echo esc_attr($school_id); ?>">
+    <section class="mai-member-section mai-school-section" id="<?php echo esc_attr($school_id); ?>">
         <p class="mai-eyebrow">SCHOOL BACKGROUND</p>
-        <h2>Where we went to school</h2>
+        <h2>Where we went to <em>school</em></h2>
+        <p class="mai-school-lead">The campuses that shaped how we learn, build, and show up.</p>
 
         <?php
         $schools = isset($member['school']) && is_array($member['school']) ? $member['school'] : array();
@@ -71,7 +72,8 @@ $home    = home_url('/');
             'college'     => 'College',
         );
         ?>
-        <div class="mai-school-list">
+        <div class="mai-school-timeline">
+            <span class="mai-school-line" aria-hidden="true"></span>
             <?php foreach ($levels as $key => $label) :
                 $entry = isset($schools[$key]) ? $schools[$key] : '';
                 $place = '';
@@ -84,36 +86,39 @@ $home    = home_url('/');
                     $place = trim((string) $entry);
                 }
                 ?>
-                <article class="mai-school-card">
-                    <div class="mai-school-logo<?php echo $logo !== '' ? ' has-photo' : ''; ?>" aria-hidden="true">
-                        <?php if ($logo !== '') : ?>
-                            <img src="<?php echo esc_url($logo); ?>" alt="">
-                        <?php elseif ($key === 'elementary') : ?>
-                            <svg viewBox="0 0 64 64">
-                                <path d="M8 30 L32 12 L56 30" fill="none" stroke="currentColor" stroke-width="2.4"/>
-                                <rect x="16" y="30" width="32" height="22" fill="none" stroke="currentColor" stroke-width="2.4"/>
-                                <rect x="28" y="38" width="8" height="14" fill="none" stroke="currentColor" stroke-width="2.2"/>
-                                <circle cx="46" cy="18" r="4" fill="currentColor"/>
-                            </svg>
-                        <?php elseif ($key === 'high_school') : ?>
-                            <svg viewBox="0 0 64 64">
-                                <path d="M10 28 H54 L32 12 Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
-                                <rect x="14" y="28" width="36" height="24" fill="none" stroke="currentColor" stroke-width="2.4"/>
-                                <rect x="22" y="34" width="7" height="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                                <rect x="35" y="34" width="7" height="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                                <rect x="28" y="40" width="8" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/>
-                            </svg>
-                        <?php else : ?>
-                            <svg viewBox="0 0 64 64">
-                                <path d="M8 28 L32 16 L56 28 L32 40 Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
-                                <path d="M20 34 V46 C24 50 40 50 44 46 V34" fill="none" stroke="currentColor" stroke-width="2.2"/>
-                                <path d="M56 28 V42" stroke="currentColor" stroke-width="2.2"/>
-                                <circle cx="56" cy="44" r="2.4" fill="currentColor"/>
-                            </svg>
-                        <?php endif; ?>
+                <article class="mai-school-item">
+                    <p class="mai-school-when"><?php echo esc_html($label); ?></p>
+                    <div class="mai-school-rail" aria-hidden="true"><span class="mai-school-dot"></span></div>
+                    <div class="mai-school-body">
+                        <div class="mai-school-logo<?php echo $logo !== '' ? ' has-photo' : ''; ?>">
+                            <?php if ($logo !== '') : ?>
+                                <img src="<?php echo esc_url($logo); ?>" alt="">
+                            <?php elseif ($key === 'elementary') : ?>
+                                <svg viewBox="0 0 64 64">
+                                    <path d="M8 30 L32 12 L56 30" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                                    <rect x="16" y="30" width="32" height="22" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                                    <rect x="28" y="38" width="8" height="14" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                                    <circle cx="46" cy="18" r="4" fill="currentColor"/>
+                                </svg>
+                            <?php elseif ($key === 'high_school') : ?>
+                                <svg viewBox="0 0 64 64">
+                                    <path d="M10 28 H54 L32 12 Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                                    <rect x="14" y="28" width="36" height="24" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                                    <rect x="22" y="34" width="7" height="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                    <rect x="35" y="34" width="7" height="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                    <rect x="28" y="40" width="8" height="12" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                                </svg>
+                            <?php else : ?>
+                                <svg viewBox="0 0 64 64">
+                                    <path d="M8 28 L32 16 L56 28 L32 40 Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                                    <path d="M20 34 V46 C24 50 40 50 44 46 V34" fill="none" stroke="currentColor" stroke-width="2.2"/>
+                                    <path d="M56 28 V42" stroke="currentColor" stroke-width="2.2"/>
+                                    <circle cx="56" cy="44" r="2.4" fill="currentColor"/>
+                                </svg>
+                            <?php endif; ?>
+                        </div>
+                        <h3><?php echo $place !== '' ? esc_html($place) : 'Add school name'; ?></h3>
                     </div>
-                    <span><?php echo esc_html($label); ?></span>
-                    <strong><?php echo $place !== '' ? esc_html($place) : 'Add school name'; ?></strong>
                 </article>
             <?php endforeach; ?>
         </div>
